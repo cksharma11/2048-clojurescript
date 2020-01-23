@@ -16,13 +16,20 @@
   [:div {:class "row"}
    (map create-cell row)])
 
+#(case (.-which %)
+   38 (fn [] (swap! state l/move-board-up))
+   40 (fn [] (swap! state l/move-board-up))
+   37 (fn [] (swap! state l/move-board-left))
+   39 (fn [] (swap! state l/move-board-right))
+   nil)
+
 (defn board []
-  [:div {:class "board" :on-key-down #(case (.-which %)
-                                        38 (fn [] (swap! state l/move-board-up))
-                                        40 (fn [] (swap! state l/move-board-up))
-                                        37 (fn [] (swap! state l/move-board-left))
-                                        39 (fn [] (swap! state l/move-board-right))
-                                        nil)}
+  [:div {:class "board" :tabindex -1 :on-key-down #(case (.-which %)
+                                                     38 (swap! state l/move-board-up)
+                                                     40 (swap! state l/move-board-down)
+                                                     37 (swap! state l/move-board-left)
+                                                     39 (swap! state l/move-board-right)
+                                                     nil)}
    (map create-row @state)])
 
 (reagent/render-component [board]
