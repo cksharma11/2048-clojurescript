@@ -3,7 +3,19 @@
 (def remove-zeroes (partial filter pos?))
 
 (defn append-zeroes [size coll]
-  (take size (concat coll (repeat 0))))
+      (take size (concat coll (repeat 0))))
+
+(defn create-new-cell [board]
+      (loop [row (rand-int 4)
+             col (rand-int 4)]
+            (if (= 0 (get-in (mapv vec board) [row col]))
+              [row col]
+              (recur (rand-int 4) (rand-int 4)))))
+
+(defn place-new-cell [board]
+      (map (partial apply list)
+           (assoc-in (mapv vec board)
+                     (create-new-cell board) 2)))
 
 (def move-left-row-without-zeroes
   (comp

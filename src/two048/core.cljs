@@ -25,7 +25,7 @@
 
 (defn board []
   [:div {:class "board" :tabindex -1 :on-key-down #(case (.-which %)
-                                                     38 (swap! state l/move-board-up)
+                                                     38 (swap! state (comp l/move-board-up l/place-new-cell))
                                                      40 (swap! state l/move-board-down)
                                                      37 (swap! state l/move-board-left)
                                                      39 (swap! state l/move-board-right)
