@@ -1,0 +1,32 @@
+html {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cell {
+    height: 70px;
+    width: 70px;
+    background: whitesmoke;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row {
+    display: flex;
+}
+
+.board {
+    display: flex;
+    flex-direction: column;
+}
+
+.key {
+    height: 20px;
+    width: 20px;
+    border: 1px solid black;
+}
