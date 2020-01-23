@@ -10,7 +10,7 @@
                                (0 0 0 0))))
 
 (defn create-cell [cell]
-  [:div {:class "cell"} (str cell)])
+  [:div {:class (str "cell _" cell)} (str cell)])
 
 (defn create-row [row]
   [:div {:class "row"}
