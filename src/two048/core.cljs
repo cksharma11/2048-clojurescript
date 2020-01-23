@@ -16,13 +16,6 @@
   [:div {:class "row"}
    (map create-cell row)])
 
-#(case (.-which %)
-   38 (fn [] (swap! state l/move-board-up))
-   40 (fn [] (swap! state l/move-board-up))
-   37 (fn [] (swap! state l/move-board-left))
-   39 (fn [] (swap! state l/move-board-right))
-   nil)
-
 (defn board []
   [:div {:class "board" :tabindex -1 :on-key-down #(case (.-which %)
                                                      38 (swap! state (comp l/move-board-up l/place-new-cell))
