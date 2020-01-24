@@ -9,8 +9,11 @@
 															 (4 0 0 2)
 															 (0 0 0 0))))
 
+(defn get-cell-representation [cell]
+	(str (if (= 0 cell) "" cell)))
+
 (defn create-cell [cell]
-	[:div {:class (str "cell _" cell)} (str cell)])
+	[:div {:class (str "cell _" cell)} (get-cell-representation cell)])
 
 (defn create-row [row]
 	[:div {:class "row"}
