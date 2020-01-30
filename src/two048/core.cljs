@@ -20,12 +20,14 @@
 	 (map create-cell row)])
 
 (defn board []
-	[:div {:class "board" :tabindex -1 :on-key-down #(case (.-which %)
-																										 38 (swap! state (comp l/move-board-up l/place-new-cell))
-																										 40 (swap! state (comp l/move-board-down l/place-new-cell))
-																										 37 (swap! state (comp l/move-board-left l/place-new-cell))
-																										 39 (swap! state (comp l/move-board-right l/place-new-cell))
-																										 nil)}
+	[:div {:class "board" :tabindex -1 :on-key-down
+								#(case (.-which %)
+									 38 (swap! state (comp l/place-new-cell l/move-board-up))
+									 40 (swap! state (comp l/place-new-cell l/move-board-down))
+									 37 (swap! state (comp l/place-new-cell l/move-board-left))
+									 39 (swap! state (comp l/place-new-cell l/move-board-right))
+									 nil)}
+
 	 (map create-row @state)])
 
 (reagent/render-component [board]
