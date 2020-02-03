@@ -20,7 +20,7 @@
    (map create-cell row)])
 
 (defn board []
-  [:div {:class "board" :tabindex -1 :on-key-down
+  [:div {:class "board" :autofocus 1 :tabindex 1 :on-key-down
          #(case (.-which %)
             38 (swap! state (comp l/place-new-cell l/move-board-up))
             40 (swap! state (comp l/place-new-cell l/move-board-down))
