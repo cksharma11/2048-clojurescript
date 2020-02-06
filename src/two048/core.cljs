@@ -28,16 +28,16 @@
 	{:board (l/place-new-cell board) :over false}))
 
 (defn move-up [state]
- (update-state (l/move-board-up (:board state))
+ (update-state (l/move-board-up (:board state))))
 
 (defn move-down [state]
- (update-state (l/move-board-down (:board state))
+ (update-state (l/move-board-down (:board state))))
 
 (defn move-left [state]
- (update-state (l/move-board-left (:board state))
+ (update-state (l/move-board-left (:board state))))
 
 (defn move-right [state]
- (update-state (l/move-board-right (:board state))
+ (update-state (l/move-board-right (:board state))))
 
 (defn reset-game []
  (reset! state initial-state ))
