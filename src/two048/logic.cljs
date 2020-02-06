@@ -5,22 +5,37 @@
 (defn get-random [] (rand-int 4))
 (defn get-new-cell [] (rand-nth [2 4]))
 
+(def transpose (partial apply map list))
 (def remove-zeroes (partial filter pos?))
 
 (defn append-zeroes [size coll]
   (take size (concat coll (repeat 0))))
 
+(defn any-cell-not-empty? [board]
+  (not (some zero? (flatten board))))
+
 (defn create-new-cell [board]
-  (loop [row (get-random)
-         col (get-random)]
-    (if (= 0 (get-in (mapv vec board) [row col]))
-      [row col]
-      (recur (get-random) (get-random)))))
+  (if (any-cell-not-empty? board)
+    [-1 -1]
+    (loop [row (get-random)
+           col (get-random)]
+      (if (= 0 (get-in (mapv vec board) [row col]))
+        [row col]
+        (recur (get-random) (get-random))))))
 
 (defn place-new-cell [board]
   (map (partial apply list)
        (assoc-in (mapv vec board)
                  (create-new-cell board) (get-new-cell))))
+
+(defn any-adjacent-not-same? [coll]
+  (= (count coll)
+     (count (dedupe coll))))
+
+(defn game-over? [board]
+  (and (every? any-adjacent-not-same? board)
+       (every? any-adjacent-not-same? (transpose board))
+       (any-cell-not-empty? board)))
 
 (def move-left-row-without-zeroes
   (comp
@@ -37,8 +52,6 @@
 (def move-board-left (partial map move-left-row))
 
 (def reverse-board (partial map reverse))
-
-(def transpose (partial apply map list))
 
 (def move-board-right (comp reverse-board move-board-left reverse-board))
 
