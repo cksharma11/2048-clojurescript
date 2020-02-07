@@ -5,22 +5,12 @@
 (enable-console-print!)
 
 (def initial-state {:board '((0 0 0 0)
-														 (2 2 0 0)
+														 (0 2 2 0)
 														 (0 0 0 2)
 														 (0 0 0 0))
 										:over  false})
 
 (defonce state (reagent/atom initial-state))
-
-(defn get-cell-representation [cell]
- (str (if (= 0 cell) "" cell)))
-
-(defn create-cell [cell]
- [:div {:class (str "cell _" cell)} (get-cell-representation cell)])
-
-(defn create-row [row]
- [:div {:class "row"}
-	(map create-cell row)])
 
 (defn update-state [board]
  (if (l/game-over? board)
@@ -41,6 +31,16 @@
 
 (defn reset-game []
  (reset! state initial-state ))
+
+(defn get-cell-representation [cell]
+ (str (if (= 0 cell) "" cell)))
+
+(defn create-cell [cell]
+ [:div {:class (str "cell _" cell)} (get-cell-representation cell)])
+
+(defn create-row [row]
+ [:div {:class "row"}
+	(map create-cell row)])
 
 (defn game-over-view [state]
  (if (:over state)
