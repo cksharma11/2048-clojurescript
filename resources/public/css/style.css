@@ -93,6 +93,7 @@ h1 {
   width: 120px;
   height: 120px;
   animation: spin 1s linear infinite;
+  font-family: "Open Sans", sans-serif;
 }
 
 @keyframes spin {
@@ -127,11 +128,33 @@ h1 {
   position: absolute;
   top: 0;
   left: 0;
-  background: #80808070;
+  background: #808080bf;
+  font-family: "Open Sans", sans-serif;
+  color: white;
+  -webkit-animation: fadein 2s;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 .play-again {
-  height: 30px;
-  width: 100px;
-  border-radius: 2px;
+  background-color: #f4511e;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+  border-radius: 5px;
+  padding-top: 10px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.play-again:hover {
+  opacity: 1;
+  cursor: pointer;
 }
